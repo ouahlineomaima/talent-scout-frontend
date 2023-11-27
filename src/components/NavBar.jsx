@@ -7,6 +7,7 @@ import { Link, useNavigate } from 'react-router-dom';
 export default function NavBar() {
     const [theme, setTheme] = useState(localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
     );
+    const [isBurgerClicked, setIsBurgerClicked] = useState(false);
     const navigate = useNavigate()
     const element = document.documentElement;
     const darkQuery = window.matchMedia("(prefers-color-scheme: dark)");
@@ -50,8 +51,12 @@ export default function NavBar() {
         setTheme(given === "dark" ? "dark" : "light")
 
     }
+    const handleBurgerClick = () => {
+        setIsBurgerClicked(!isBurgerClicked);
+    }
     return (
-        <div className="w-screen h-max px-[3.125rem] justify-between items-center inline-flex bg-white dark:bg-darkBg">
+        <div className='flex flex-col w-screen h-24 xl:h-28 relative overflow-visible'>
+            <div className="w-screen h-24 px-[3.125rem] justify-between items-center inline-flex bg-white dark:bg-darkBg">
             <div className="w-[100px] h-[100px]">
                 <Link to={'/'}>
                     <img src={logo} alt="logo" className="dark:hidden w-[100px] h-[100px]" />
@@ -59,13 +64,13 @@ export default function NavBar() {
 
             </div>
 
-            <div className="justify-center items-center gap-[1.875rem] flex">
+            <div className="hidden md:flex justify-center items-center gap-[1.875rem] ">
                 <Link to={'/capabilities'} className='text-logoGreen font-open-sans text-xl text-center font-normal'>Capabilities</Link>
                 <Link to={'/pricing'} className='text-logoGreen font-open-sans text-xl text-center font-normal'>Pricing</Link>
                 <Link to={'/about'} className='text-logoGreen font-open-sans text-xl text-center font-normal'>About us</Link>
 
             </div>
-            <div className='flex flex-row gap-4'>
+            <div className='hidden md:flex flex-row gap-4'>
                 <Link to={'/login'} className='bg-logoGreen w-[7rem] text-center text-white dark:text-darkBg font-normal font-open-sans text-lg p-[0.75rem] rounded-lg'>Log in</Link>
                 <Link to={'/register'} className='border border-logoGreen w-[7rem] text-center text-logoGreen font-normal font-open-sans text-lg p-[0.75rem] rounded-lg'>Register</Link>
             </div>
@@ -85,9 +90,39 @@ export default function NavBar() {
 
 
             </div>
+            {/* Burgur to toggle sidebar */}
+            <div className='md:hidden'>
+                <div className={`relative w-6 h-6 overflow-visible justify-center items-center`}>
+                    <div className='w-6 h-6 inset-x-1/2' onClick={() => handleBurgerClick()}>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} className="stroke-logoGreen w-6 h-6 cursor-pointer">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                        </svg>
+
+                    </div>
+
+                </div>
+
+
+            </div>
 
 
 
         </div>
+        {/* Mobile navbar content */}
+      {isBurgerClicked && (localStorage.getItem('token') == '' || localStorage.getItem('token') == null)  && (
+        <div className='flex justify-center flex-col items-start w-screen h-max border-b bg-white dark:bg-darkBg py-[0.5rem] px-[1.375rem]  border-solid stroke-content dark:stroke-navborder z-50 whitespace-nowrap'>
+          <Link to={`/capabilities`} className='flex p-[0.625rem] justify-center items-center list-none text-logoGreen hover:opacity-50 text-center font-open-sans text-base font-medium'>Capabilities</Link>
+          <Link to={`/pricing`} className='flex p-[0.625rem] justify-center items-center list-none text-logoGreen hover:opacity-50 text-center font-open-sans text-base font-medium'>Pricing</Link>
+          <Link to={`/about`} className='flex p-[0.625rem] justify-center items-center list-none text-logoGreen hover:opacity-50 text-center font-open-sans text-base font-medium'>About us</Link>
+
+          {/* <div className='w-full h-[0.0625rem] bg-navborder'></div> */}
+          <Link to={`/signin`} className='flex p-[0.625rem] justify-center items-center list-none text-logoGreen  opacity-50 hover:opacity-30 text-center font-open-sans text-base font-medium'>Se connecter</Link>
+          <Link to={`/joinus`} className='flex p-[0.625rem] justify-center items-center list-none text-logoGreen  opacity-50 hover:opacity-30 text-center font-open-sans text-base font-medium'>S'inscrire</Link>
+
+        </div>
+      )}
+
+        </div>
+        
     )
 }
