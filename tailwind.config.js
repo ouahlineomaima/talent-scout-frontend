@@ -7,8 +7,8 @@ export default {
     extend: {
       
       colors:{
-        logoGreen: "rgb(var(--color-logoGreen)/ <alpha-value>)",
-        darkBg: "rgb(var(--color-darkBg)/ <alpha-value>)",
+        logoGreen: "rgb(var(--color-logoGreen), <alpha-value>)",
+        darkBg: "rgb(var(--color-darkBg), <alpha-value>)",
         
         
       },
