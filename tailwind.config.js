@@ -5,6 +5,11 @@ export default {
   mode: "jit",
   theme: {
     extend: {
+      backgroundImage:{
+
+        'Logo': 'url(assets/logo/logo.svg)',
+        'LogoStroke': 'url(assets/logo/logoStroke.svg)'
+      },
       
       colors:{
         logoGreen: "rgb(var(--color-logoGreen), <alpha-value>)",
