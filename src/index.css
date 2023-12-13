@@ -6,7 +6,38 @@
   :root{
     --color-logoGreen: 102, 188, 70; /*66BC46 logoGreen*/
     --color-darkBg: 47, 46, 65; /*2F2E41 darkBg*/
-    
+    --color-bkg: 245, 245, 245; /*F5F5F5*/
+    --color-magenta: 255 20 157; /*FF149D*/
+    --color-logo: 183 29 131; /*B71D83*/
+    --color-content: 31 31 41; /*1F1F29*/
+    --color-darkPink: 75 27 68; /*4B1B44*/
+    --color-lightGrey: 103 103 103; /*676767*/
+    --color-grey: 98 98 98; /*626262*/
+    --color-grey2: 141 141 153; /*8D8D99*/
+    --color-darkbgk: 49 49 68; /*#313144*/
+    --color-blue: 22 126 230; /*167EE6*/
+    --color-pink: 187 141 183; /*BB8DB7*/
+    --color-purple: 99 59 188; /*633BBC Produto/purple-mid*/
+    --color-greyInput: 46 46 46;  /*262626*/
+    --color-darkGrey: 26 26 26; /* #1a1a1a */
+    --color-navborder: 150, 132, 165; /*9684A5*/
+    --color-buttonHome: 98, 15, 50; /*620F32*/
+    --color-professorCard: 251, 244, 250; /* FBF4FA */
+    --color-professorCardDark: 20, 20, 20; /* 141414 */
+    --color-ratingGrey: 110, 116, 145; /* #6E7491 */
+    --color-linkedin: 10, 102, 194; /* #0A66C2 */
+    --color-youtube: 178, 7, 29; /* #B2071D */
+    --color-twitter: 29, 155, 240; /* #1D9BF0 */
+    --color-socialGrey: 96, 101, 111; /* 60656F */
+
+    --color-lightPink: 252, 229, 250; /*#D5B0CF  */
+    --color-buttonPink: 243, 229, 252; /*#f3e5fc*/
+    --color-menuGrey: 157 178 191; /*9DB2BF*/
+    --color-menuPink: 243 229 252; /*9DB2BF*/
+
+    /*--color-buttonPink: 223, 169, 205;*/ /*#dfa9cd*/
+    --color-onlineGreen: 1 181 116; /*01B574  */
+
 
   }
   
