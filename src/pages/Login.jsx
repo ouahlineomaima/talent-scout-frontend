@@ -8,7 +8,7 @@ import { useMutation } from '@apollo/client';
 import AuthContext from '../context/AuthContext';
 
 export default function Login() {
-    const { setUser, login } = useContext(AuthContext);
+    const { setUser, login, user } = useContext(AuthContext);
     const [loginRecruiter] = useMutation(LOGIN_RECRUITER);
     const [showPassword, setShowPassword] = useState(false);
     const [loginInput, setloginInput] = useState({
@@ -37,8 +37,8 @@ export default function Login() {
         }
     };
     return (
-        <div className='w-screen flex flex-col justify-center items-center h-max mb-4'>
-            <div className='flex flex-col gap-[1.575rem]  w-full justify-center items-center'>
+        <div className='w-screen flex flex-col justify-center items-center h-max bg-white dark:bg-darkBg'>
+            <div className='flex flex-col gap-[1.575rem]  w-full justify-center items-center mt-2'>
                 <h2 className="text-3xl font-bold mb-4 text-center font-open-sans dark:text-white text-darkBg">
                     Connectez-vous!
                 </h2>

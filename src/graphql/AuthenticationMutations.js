@@ -18,6 +18,8 @@ export const LOGIN_RECRUITER = gql`
       lastname
       email
       token
+      profilePicture
+
     }
   }
 `;
