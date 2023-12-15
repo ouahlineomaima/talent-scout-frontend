@@ -5,11 +5,55 @@ export default {
   mode: "jit",
   theme: {
     extend: {
+      backgroundImage:{
+
+        'Logo': 'url(assets/logo/logo.svg)',
+        'LogoStroke': 'url(assets/logo/logoStroke.svg)'
+      },
       
       colors:{
         logoGreen: "rgb(var(--color-logoGreen), <alpha-value>)",
         darkBg: "rgb(var(--color-darkBg), <alpha-value>)",
         
+        
+      },
+      colors:{
+        logoGreen: "rgb(var(--color-logoGreen), <alpha-value>)",
+        darkBg: "rgb(var(--color-darkBg), <alpha-value>)",
+        bkg: "rgba(var(--color-bkg), <alpha-value>)",
+        magenta: "rgb(var(--color-magenta)/ <alpha-value>)",
+        logo: "rgb(var(--color-logo)/ <alpha-value>)",
+        content: "rgb(var(--color-content)/ <alpha-value>)",
+        darkPink: "rgb(var(--color-darkPink)/ <alpha-value>)",
+        lightGrey: "rgb(var(--color-lightGrey)/ <alpha-value>)",
+        grey: "rgb(var(--color-grey)/ <alpha-value>)",
+        grey2: "rgb(var(--color-grey2)/ <alpha-value>)",
+        darkbgk: "rgb(var(--color-darkbgk)/ <alpha-value>)",
+        blue: "rgb(var(--color-blue)/ <alpha-value>)",
+        pink: "rgb(var(--color-pink)/ <alpha-value>)",
+        purple: "rgb(var(--color-purple)/ <alpha-value>)",
+        navborder: "rgba(var(--color-navborder), <alpha-value>)",
+        buttonHome: "rgba(var(--color-buttonHome), <alpha-value>)",
+        ratingGrey: "rgba(var(--color-ratingGrey), <alpha-value>)",
+        darkGrey: '#ffffff1a',
+        professorCard: "rgba(var(--color-professorCard), <alpha-value>)",
+        professorCardDark: "rgba(var(--color-professorCardDark), <alpha-value>)",
+        ratingGrey: "rgba(var(--color-ratingGrey), <alpha-value>)",
+        linkedin: "rgba(var(--color-linkedin), <alpha-value>)",
+        youtube: "rgba(var(--color-youtube), <alpha-value>)",
+        twitter: "rgba(var(--color-twitter), <alpha-value>)",
+        socialGrey: "rgba(var(--color-socialGrey), <alpha-value>)",
+        lightPink: "rgba(var(--color-lightPink), <alpha-value>)",
+        greyInput: "rgb(var(--color-greyInput)/ <alpha-value>)",
+
+
+        menuGrey: "rgb(var(--color-menuGrey)/ <alpha-value>)",
+        buttonPink: "rgb(var(--color-buttonPink)/ <alpha-value>)",
+        menuPink: "rgb(var(--color-menuPink)/ <alpha-value>)",
+        onlineGreen: "rgb(var(--color-onlineGreen)/ <alpha-value>)",
+
+        
+
         
       },
     
