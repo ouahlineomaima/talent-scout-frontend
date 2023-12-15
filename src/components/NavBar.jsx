@@ -96,7 +96,7 @@ export default function NavBar() {
                 {isAuthenticated && user && (
                     <>
                         <div className="hidden md:flex justify-center items-center gap-[1.875rem] ">
-                            <Link to={'/recruitements'} className='text-logoGreen font-open-sans text-xl text-center font-normal'>Recruitements</Link>
+                            <Link to={'/recruitments'} className='text-logoGreen font-open-sans text-xl text-center font-normal'>Recruitments</Link>
 
                         </div>
                         <div className='flex items-center gap-2 sm:gap-[0.8125rem]'>

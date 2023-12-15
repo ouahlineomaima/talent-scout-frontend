@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import Footer from './components/Footer';
 import Register from './pages/Register';
 import Login from './pages/Login';
+import Recruitments from './pages/Recruitments';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/recruitments" element={<Recruitments />} />
         </Routes>
 
         <Footer></Footer>
