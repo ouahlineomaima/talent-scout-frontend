@@ -1,7 +1,6 @@
 import React from 'react';
 
 export default function PricingCard({ pack, includedFeatures, excludedFeatures, center }) {
-    console.log(center);
 
     return (
         <div className={`w-64 p-4 bg-white ${center ? " border border-white" : ""} shadow-lg rounded-2xl dark:bg-darkBg`}>

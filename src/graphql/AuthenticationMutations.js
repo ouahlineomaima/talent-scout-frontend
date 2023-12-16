@@ -25,14 +25,14 @@ export const LOGIN_RECRUITER = gql`
 `;
 
 export const GET_CURRENT_RECRUITER = gql`
-  query GetCurrentRecruiter($token: String!) {
-    currentRecruiter(token: $token) {
-      id
-      firstname
-      lastname
-      email
-      profilePicture
-      token
-    }
+  query Query($token: String!) {
+  currentRecruiter(token: $token) {
+    email
+    firstname
+    lastname
+    password
+    profilePicture
+    token
   }
+}
 `;
