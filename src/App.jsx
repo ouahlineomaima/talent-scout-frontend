@@ -9,6 +9,7 @@ import Recruitments from './pages/Recruitments';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 function App() {
+  
   return (
     <Router>
       <div className='overflow-hidden pb-4'>

@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import AuthContext from './AuthContext';
+import { GET_CURRENT_RECRUITER } from '../graphql/AuthenticationMutations';
+import { useQuery } from '@apollo/client';
+
 
 const AuthContextProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem('auth-token'));
@@ -38,6 +41,18 @@ const AuthContextProvider = ({ children }) => {
       window.removeEventListener('storage', onStorageChange);
     };
   }, []);
+
+  const { loading, data } = useQuery(GET_CURRENT_RECRUITER, {
+    variables: { token },
+    skip: !token, // Skip the query if there's no token
+  });
+
+  useEffect(() =>{
+    if (!loading && data && data.currentRecruiter) {
+      setUser(data.currentRecruiter);
+    }
+
+  }, [loading, data, token])
 
   return (
 

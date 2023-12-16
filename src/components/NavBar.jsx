@@ -66,7 +66,6 @@ export default function NavBar() {
         setUser(null)
         navigate('/')
       }
-      console.log(user)
     return (
         <div className='flex flex-col w-screen h-24 xl:h-28 relative overflow-visible'>
             <div className="w-screen h-24 px-[3.125rem] justify-between items-center inline-flex bg-white dark:bg-darkBg">

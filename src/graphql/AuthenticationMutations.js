@@ -23,3 +23,16 @@ export const LOGIN_RECRUITER = gql`
     }
   }
 `;
+
+export const GET_CURRENT_RECRUITER = gql`
+  query GetCurrentRecruiter($token: String!) {
+    currentRecruiter(token: $token) {
+      id
+      firstname
+      lastname
+      email
+      profilePicture
+      token
+    }
+  }
+`;
