@@ -27,6 +27,7 @@ export const LOGIN_RECRUITER = gql`
 export const GET_CURRENT_RECRUITER = gql`
   query Query($token: String!) {
   currentRecruiter(token: $token) {
+    id
     email
     firstname
     lastname

@@ -27,7 +27,6 @@ export default function Login() {
                 variables: { loginInput },
             });
             if (data) {
-                console.log('Logged:', data.loginRecruiter);
                 login(data.loginRecruiter.token)
                 setUser(data.loginRecruiter);
                 navigate('/')
