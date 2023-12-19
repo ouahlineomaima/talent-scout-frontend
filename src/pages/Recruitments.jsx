@@ -5,6 +5,9 @@ import { useMutation, useQuery } from '@apollo/client';
 import { GET_RECRUITER_RECRUITMENTS, ADD_RECRUITMENT } from '../graphql/Recruitment';
 import AuthContext from '../context/AuthContext';
 import RecruitmentStatus from '../utils/RecruitmentStatus';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
+
 
 
 
@@ -62,11 +65,13 @@ export default function Recruitments() {
             technologies: []
         },
     });
-    const modalRef = useRef()
+    const modalRef = useRef();
+    const [isPermissionsGranted, setIsPermissionsGranted] = useState(false);
     const [addRecruitmentMutation] = useMutation(ADD_RECRUITMENT);
     const { loading, data, refetch } = useQuery(GET_RECRUITER_RECRUITMENTS, {
         variables: { token },
     });
+    const { error } = useParams();
 
     useEffect(() => {
         if (!loading && data && data.currentRecruiter) {
@@ -88,6 +93,7 @@ export default function Recruitments() {
 
     const closeModal = () => {
         setIsModalOpen(false);
+        setIsPermissionsGranted(false);
     };
 
     const handleInputChange = (e) => {
@@ -110,6 +116,8 @@ export default function Recruitments() {
             if (data) {
                 setRecruitments((prevRecruitments) => prevRecruitments.concat(data.addRecruitment));
             }
+            setIsPermissionsGranted(false);
+
 
         } catch (error) {
             console.error('Loading error:', error.message);
@@ -117,6 +125,27 @@ export default function Recruitments() {
 
         closeModal();
     };
+
+    const grantPermission = async (e) =>{
+        e.preventDefault()
+        try{
+            await axios.get('http://localhost:5001/auth');
+            if(error){
+                setIsPermissionsGranted(false);
+                return;
+
+            }
+            else{
+                setIsPermissionsGranted(true);
+                return;
+            }
+            
+
+
+        }catch(err){
+            console.log(err)
+        }
+    }
 
     const handleOverlayClick = (e) => {
         if (modalRef.current && !modalRef.current.contains(e.target)) {
@@ -193,16 +222,33 @@ export default function Recruitments() {
                 className="border rounded-lg p-3  w-full md:w-64 lg:w-80 border-solid border-radius-10 text-montserrat text-input bg-bkg dark:bg-greyInput dark:border-0 dark:text-bkg"
               /> */}
                             <TagsInput tags={recruitmentInput.descriptions.technologies} setTags={(tags) => setrecruitmentInput((prevData) => ({ ...prevData, descriptions: { technologies: tags } }))} />
-                            <div className='flex gap-2'>
+                            <div className='flex flex-row gap-2'>
                                 <button
                                     type='submit'
                                     onClick={(e) => handleSubmit(e)}
-                                    className=' p-4 rounded-lg border-content text-white'
-                                    style={{ background: 'linear-gradient(281deg, #46BC4D -6.69%, #468ABC 100%)' }}
+                                    className='p-4 rounded-lg border-content text-white'
+                                    style={{
+                                        background: 'linear-gradient(281deg, #46BC4D -6.69%, #468ABC 100%)',
+                                        cursor: isPermissionsGranted ? 'pointer' : 'not-allowed',
+                                        opacity: isPermissionsGranted ? 1 : 0.5,
+                                    }}
+                                    disabled={!isPermissionsGranted}
                                 >
                                     Add recruitment
                                 </button>
-
+                                <button
+                                    type='button'
+                                    onClick={(e) => grantPermission(e)}
+                                    className=' p-4 rounded-lg border-content text-white'
+                                    style={{
+                                        background: 'linear-gradient(281deg, #46BC4D -6.69%, #468ABC 100%)',
+                                        cursor: !isPermissionsGranted ? 'pointer' : 'not-allowed',
+                                        opacity: !isPermissionsGranted ? 1 : 0.5,
+                                    }}
+                                    disabled={isPermissionsGranted}
+                                >
+                                    Grant Permission
+                                </button>
                             </div>
                         </form>
                     </div>
