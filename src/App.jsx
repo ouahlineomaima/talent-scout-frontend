@@ -9,6 +9,7 @@ import Recruitments from './pages/Recruitments';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { useContext } from 'react';
 import AuthContext from './context/AuthContext';
+import Profile from './pages/Profile';
 
 function App() {
   
@@ -26,6 +27,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/recruitments" element={<Recruitments />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
 
         <Footer></Footer>

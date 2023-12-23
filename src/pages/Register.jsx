@@ -40,7 +40,7 @@ export default function Register() {
                 console.log('Registered:', data.registerRecruiter);
                 login(data.registerRecruiter.token)
                 setUser(data.registerRecruiter);
-                navigate('/')
+                navigate('/profile')
             }
         } catch (error) {
             console.error('Registration error:', error.message);
