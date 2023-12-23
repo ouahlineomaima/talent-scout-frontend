@@ -8,6 +8,7 @@ const AuthContextProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(token !== '' && token !== null);
   const [user, setUser] = useState(null);
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
+  const [permissionsGranted, setPermissionsGranted] = useState(localStorage.getItem('permissions-granted') != null ? localStorage.getItem('permissions-granted') : false)
 
   const login = (newToken) => {
     setToken(newToken);
@@ -25,6 +26,11 @@ const AuthContextProvider = ({ children }) => {
     setTheme(newTheme);
     localStorage.setItem('theme', newTheme);
   };
+
+  const grantPermission = ()=>{
+    setPermissionsGranted(true);
+    localStorage.setItem('permissions-granted', true)
+  }
 
   // Fetch current recruiter data when the token changes
   const { loading, data, refetch } = useQuery(GET_CURRENT_RECRUITER, {
@@ -59,7 +65,7 @@ const AuthContextProvider = ({ children }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ token, isAuthenticated, user, setUser, login, logout, theme, switchTheme }}>
+    <AuthContext.Provider value={{ token, isAuthenticated, user, setUser, login, logout, theme, switchTheme, grantPermission, permissionsGranted }}>
       {children}
     </AuthContext.Provider>
   );

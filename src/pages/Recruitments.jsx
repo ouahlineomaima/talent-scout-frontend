@@ -9,8 +9,6 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
 
-
-
 // TagsInput component
 const TagsInput = ({ tags, setTags }) => {
     const [inputValue, setInputValue] = useState('');
@@ -54,19 +52,18 @@ const TagsInput = ({ tags, setTags }) => {
 
 export default function Recruitments() {
     const [recruitments, setRecruitments] = useState(null);
-    const { user, token } = useContext(AuthContext);
+    const { user, token, permissionsGranted } = useContext(AuthContext);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [recruitmentInput, setrecruitmentInput] = useState({
         token: '',
         jobTitle: '',
-        trackedEmail: '',
         emailSubject: '',
         descriptions: {
             technologies: []
         },
     });
     const modalRef = useRef();
-    const [isPermissionsGranted, setIsPermissionsGranted] = useState(false);
+    /* const [isPermissionsGranted, setIsPermissionsGranted] = useState(false); */
     const [addRecruitmentMutation] = useMutation(ADD_RECRUITMENT);
     const { loading, data, refetch } = useQuery(GET_RECRUITER_RECRUITMENTS, {
         variables: { token },
@@ -93,7 +90,6 @@ export default function Recruitments() {
 
     const closeModal = () => {
         setIsModalOpen(false);
-        setIsPermissionsGranted(false);
     };
 
     const handleInputChange = (e) => {
@@ -116,8 +112,6 @@ export default function Recruitments() {
             if (data) {
                 setRecruitments((prevRecruitments) => prevRecruitments.concat(data.addRecruitment));
             }
-            setIsPermissionsGranted(false);
-
 
         } catch (error) {
             console.error('Loading error:', error.message);
@@ -126,7 +120,7 @@ export default function Recruitments() {
         closeModal();
     };
 
-    const grantPermission = async (e) =>{
+    /* const grantPermission = async (e) =>{
         e.preventDefault()
         try{
             await axios.get('http://localhost:5001/auth');
@@ -145,7 +139,7 @@ export default function Recruitments() {
         }catch(err){
             console.log(err)
         }
-    }
+    } */
 
     const handleOverlayClick = (e) => {
         if (modalRef.current && !modalRef.current.contains(e.target)) {
@@ -179,7 +173,7 @@ export default function Recruitments() {
             {/* Modal */}
             {isModalOpen && (
                 <div className='fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-70 flex justify-center items-center z-10' onClick={handleOverlayClick}>
-                    <div className=' w-[50vw] min-h-[60vh] h-max flex justify-center items-center flex-col gap-4 rounded-[18px] bg-white dark:bg-darkBg shadow-md ' ref={modalRef}>
+                    <div className=' w-[50vw] min-h-[40vh] h-max flex justify-start items-center flex-col gap-4 rounded-[18px] bg-white dark:bg-darkBg shadow-md mt-4' ref={modalRef}>
                         <button
                             type='button'
                             onClick={closeModal}
@@ -196,14 +190,6 @@ export default function Recruitments() {
                                 value={recruitmentInput.jobTitle}
                                 onChange={handleInputChange}
                                 className="rounded-lg p-3 w-full md:w-64 lg:w-80 border border-solid border-radius-10 text-montserrat text-input bg-bkg dark:bg-greyInput dark:border-0 dark:text-bkg"
-                            />
-                            <input
-                                type='email'
-                                name='trackedEmail'
-                                placeholder='Tracked Email'
-                                value={recruitmentInput.trackedEmail}
-                                onChange={handleInputChange}
-                                className="border rounded-lg p-3  w-full md:w-64 lg:w-80 border-solid border-radius-10 text-montserrat text-input bg-bkg dark:bg-greyInput dark:border-0 dark:text-bkg"
                             />
                             <input
                                 type='text'
@@ -229,26 +215,26 @@ export default function Recruitments() {
                                     className='p-4 rounded-lg border-content text-white'
                                     style={{
                                         background: 'linear-gradient(281deg, #46BC4D -6.69%, #468ABC 100%)',
-                                        cursor: isPermissionsGranted ? 'pointer' : 'not-allowed',
-                                        opacity: isPermissionsGranted ? 1 : 0.5,
+                                        cursor: permissionsGranted ? 'pointer' : 'not-allowed',
+                                        opacity: permissionsGranted ? 1 : 0.5,
                                     }}
-                                    disabled={!isPermissionsGranted}
+                                    disabled={permissionsGranted}
                                 >
                                     Add recruitment
                                 </button>
-                                <button
+                                {/* <button
                                     type='button'
                                     onClick={(e) => grantPermission(e)}
                                     className=' p-4 rounded-lg border-content text-white'
                                     style={{
                                         background: 'linear-gradient(281deg, #46BC4D -6.69%, #468ABC 100%)',
-                                        cursor: !isPermissionsGranted ? 'pointer' : 'not-allowed',
-                                        opacity: !isPermissionsGranted ? 1 : 0.5,
+                                        cursor: permissionsGranted ? 'pointer' : 'not-allowed',
+                                        opacity: permissionsGranted ? 1 : 0.5,
                                     }}
-                                    disabled={isPermissionsGranted}
+                                    disabled={permissionsGranted}
                                 >
                                     Grant Permission
-                                </button>
+                                </button> */}
                             </div>
                         </form>
                     </div>
