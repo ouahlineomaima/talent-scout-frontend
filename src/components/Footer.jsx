@@ -17,7 +17,7 @@ export default function Footer() {
                         <div className="grow shrink basis-0 text-slate-500 text-lg font-bold font-nunito-sans">À propos</div>
                     </div>
                     <div className="self-stretch p-1 justify-start items-start gap-2.5 inline-flex">
-                        <a href="" className="grow shrink basis-0 text-slate-400 text-base font-normal font-nunito-sans">À propos de SekWilla</a>
+                        <a href="" className="grow shrink basis-0 text-slate-400 text-base font-normal font-nunito-sans">À propos de TalentScout</a>
                     </div>
                     <div className="self-stretch p-1 justify-start items-start gap-2.5 inline-flex">
 
@@ -103,7 +103,7 @@ export default function Footer() {
                         </div>
 
                         <div className="self-stretch p-1 justify-start items-start gap-2.5 inline-flex">
-                            <div className="grow shrink basis-0 text-slate-400 text-base font-normal font-nunito-sans">SekWilla pour Android</div>
+                            <div className="grow shrink basis-0 text-slate-400 text-base font-normal font-nunito-sans">TalentScout pour Android</div>
                         </div>
                         <MobileStoreButton
                             store="android"
@@ -146,7 +146,7 @@ export default function Footer() {
                         </a>
                     </div>
                 </div>
-                <div className="text-right text-slate-400 text-lg font-normal font-['Nunito Sans']">© 2023 SekWilla</div>
+                <div className="text-right text-slate-400 text-lg font-normal font-['Nunito Sans']">© 2023 TalentScout</div>
             </div>
         </div>
 
