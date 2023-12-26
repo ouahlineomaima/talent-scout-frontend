@@ -53,7 +53,7 @@ export default function RecruitmentDetails() {
                     <div className='flex flex-col justify-start items-start gap-2'>
                         <h3 className=' text-lg font-open-sans text-darkBg dark:text-white'>Job Title: {recruitment.jobTitle}</h3>
                         <h3 className=' text-lg font-open-sans text-darkBg dark:text-white'>Email subject: {recruitment.emailSubject}</h3>
-                        <div className='flex flex-row gap-2 flex-wrap text-lg text-darkBg dark:text-white'>
+                        <div className='flex flex-row gap-2 flex-wrap text-lg text-darkBg dark:text-white pr-2'>
                             Technologies: 
                             {recruitment.descriptions.technologies.map((technology) => {
                                 return (
