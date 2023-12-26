@@ -55,6 +55,10 @@ const AuthContextProvider = ({ children }) => {
         setToken(updatedToken);
         setIsAuthenticated(updatedToken !== '' && updatedToken !== null);
       }
+      if (event.key === 'permissions-granted') {
+        const updatedPermission = event.newValue;
+        setPermissionsGranted(updatedPermission);
+      }
     };
 
     window.addEventListener('storage', onStorageChange);

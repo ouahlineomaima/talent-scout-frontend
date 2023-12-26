@@ -10,6 +10,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { useContext } from 'react';
 import AuthContext from './context/AuthContext';
 import Profile from './pages/Profile';
+import RecruitmentDetails from './pages/RecruitmentDetails';
+import ApplicantDetails from './pages/ApplicantDetails';
 
 function App() {
   
@@ -28,6 +30,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/recruitments" element={<Recruitments />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/recruitments/:id" element={<RecruitmentDetails />} />
+          <Route path="/applicants/:id" element={<ApplicantDetails />} />
         </Routes>
 
         <Footer></Footer>

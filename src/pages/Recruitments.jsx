@@ -6,7 +6,7 @@ import { GET_RECRUITER_RECRUITMENTS, ADD_RECRUITMENT } from '../graphql/Recruitm
 import AuthContext from '../context/AuthContext';
 import RecruitmentStatus from '../utils/RecruitmentStatus';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 
 // TagsInput component
@@ -55,7 +55,7 @@ export default function Recruitments() {
     const { user, token, permissionsGranted } = useContext(AuthContext);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [recruitmentInput, setrecruitmentInput] = useState({
-        token: '',
+        token: token,
         jobTitle: '',
         emailSubject: '',
         descriptions: {
@@ -63,12 +63,11 @@ export default function Recruitments() {
         },
     });
     const modalRef = useRef();
-    /* const [isPermissionsGranted, setIsPermissionsGranted] = useState(false); */
     const [addRecruitmentMutation] = useMutation(ADD_RECRUITMENT);
     const { loading, data, refetch } = useQuery(GET_RECRUITER_RECRUITMENTS, {
         variables: { token },
     });
-    const { error } = useParams();
+    const navigate = useNavigate()
 
     useEffect(() => {
         if (!loading && data && data.currentRecruiter) {
@@ -104,7 +103,7 @@ export default function Recruitments() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const updatedRecruitmentInput = { ...recruitmentInput, token };
+            const updatedRecruitmentInput = { ...recruitmentInput};
             setrecruitmentInput(updatedRecruitmentInput);
             const { data } = await addRecruitmentMutation({
                 variables: { recruitmentInput },
@@ -119,27 +118,6 @@ export default function Recruitments() {
 
         closeModal();
     };
-
-    /* const grantPermission = async (e) =>{
-        e.preventDefault()
-        try{
-            await axios.get('http://localhost:5001/auth');
-            if(error){
-                setIsPermissionsGranted(false);
-                return;
-
-            }
-            else{
-                setIsPermissionsGranted(true);
-                return;
-            }
-            
-
-
-        }catch(err){
-            console.log(err)
-        }
-    } */
 
     const handleOverlayClick = (e) => {
         if (modalRef.current && !modalRef.current.contains(e.target)) {
@@ -199,14 +177,6 @@ export default function Recruitments() {
                                 onChange={handleInputChange}
                                 className="border rounded-lg p-3  w-full md:w-64 lg:w-80 border-solid border-radius-10 text-montserrat text-input bg-bkg dark:bg-greyInput dark:border-0 dark:text-bkg"
                             />
-                            {/* <input
-                type='text'
-                name='technologies'
-                placeholder='Technologies (comma separated)'
-                value={recruitmentInput.technologies.join(', ')}
-                onChange={handleInputChange}
-                className="border rounded-lg p-3  w-full md:w-64 lg:w-80 border-solid border-radius-10 text-montserrat text-input bg-bkg dark:bg-greyInput dark:border-0 dark:text-bkg"
-              /> */}
                             <TagsInput tags={recruitmentInput.descriptions.technologies} setTags={(tags) => setrecruitmentInput((prevData) => ({ ...prevData, descriptions: { technologies: tags } }))} />
                             <div className='flex flex-row gap-2'>
                                 <button
@@ -218,7 +188,7 @@ export default function Recruitments() {
                                         cursor: permissionsGranted ? 'pointer' : 'not-allowed',
                                         opacity: permissionsGranted ? 1 : 0.5,
                                     }}
-                                    disabled={permissionsGranted}
+                                    disabled={!permissionsGranted}
                                 >
                                     Add recruitment
                                 </button>
@@ -262,7 +232,8 @@ export default function Recruitments() {
                         </thead>
                         <tbody className=''>
                             {recruitments.map((recruitment) => (
-                                <tr key={recruitment.id} className="hover:bg-gray-100 dark:hover:bg-gray-500 cursor-pointer border-b  dark:border-gray-700">
+
+                                <tr key={recruitment.id} className="hover:bg-gray-100 dark:hover:bg-gray-500 cursor-pointer border-b  dark:border-gray-700" onClick={(e) => navigate(`/recruitments/${recruitment.id}`)}>
                                     <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{recruitment.jobTitle}</td>
                                     <td className='px-6 py-4'>{recruitment.trackedEmail}</td>
                                     <td className='px-6 py-4'>{recruitment.emailSubject}</td>

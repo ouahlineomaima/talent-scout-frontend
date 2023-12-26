@@ -27,3 +27,18 @@ export const ADD_RECRUITMENT = gql`
     }
   }
 `;
+
+export const GET_RECRUITMENT = gql`
+  query Recruitment($recruitmentId: ID!) {
+    recruitment(id: $recruitmentId) {
+      trackedEmail
+      emailSubject
+      jobTitle
+      descriptions {
+        technologies
+      }
+      status
+      id
+    }
+  }
+`;
